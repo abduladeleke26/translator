@@ -4,11 +4,13 @@ import os
 urlt = "https://api-b2b.backenster.com/b1/api/v3/translate"
 urlc = "https://api-b2b.backenster.com/b1/api/v3/getLanguages?platform=api&code=en_GB"
 
+app = Flask(__name__)
+
 
 
 headersc = {
         "accept": "application/json",
-        "Authorization": "a_FVCr2bXlBaJEvrgvNrp7wlgHlJCd8C8rvt2sZqaxd2DScw8acqifRUfDTYTB0OIdUodg2ffaXscbzso8"
+        "Authorization": os.environ.get('FLASK_KEY')
     }
 
 headerst = {
@@ -17,7 +19,7 @@ headerst = {
         "Authorization": "a_FVCr2bXlBaJEvrgvNrp7wlgHlJCd8C8rvt2sZqaxd2DScw8acqifRUfDTYTB0OIdUodg2ffaXscbzso8"
     }
 
-app = Flask(__name__)
+
 
 def translator(word,to,fromm):
     global urlt
@@ -60,7 +62,7 @@ def detect(text):
     headers = {
         "accept": "application/json",
         "content-type": "application/json",
-        "Authorization": "a_FVCr2bXlBaJEvrgvNrp7wlgHlJCd8C8rvt2sZqaxd2DScw8acqifRUfDTYTB0OIdUodg2ffaXscbzso8"
+        "Authorization": os.environ.get('FLASK_KEY')
     }
 
     response = requests.post(url, json=payload, headers=headers)
@@ -118,4 +120,4 @@ def translate():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
