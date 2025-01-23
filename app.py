@@ -8,7 +8,7 @@ urlc = "https://api-b2b.backenster.com/b1/api/v3/getLanguages?platform=api&code=
 
 headersc = {
         "accept": "application/json",
-        "Authorization": os.environ.get('FLASK_KEY')
+        "Authorization": "a_FVCr2bXlBaJEvrgvNrp7wlgHlJCd8C8rvt2sZqaxd2DScw8acqifRUfDTYTB0OIdUodg2ffaXscbzso8"
     }
 
 headerst = {
@@ -60,7 +60,7 @@ def detect(text):
     headers = {
         "accept": "application/json",
         "content-type": "application/json",
-        "Authorization": os.environ.get('FLASK_KEY')
+        "Authorization": "a_FVCr2bXlBaJEvrgvNrp7wlgHlJCd8C8rvt2sZqaxd2DScw8acqifRUfDTYTB0OIdUodg2ffaXscbzso8"
     }
 
     response = requests.post(url, json=payload, headers=headers)
