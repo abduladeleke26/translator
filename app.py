@@ -5,13 +5,14 @@ urlt = "https://api-b2b.backenster.com/b1/api/v3/translate"
 urlc = "https://api-b2b.backenster.com/b1/api/v3/getLanguages?platform=api&code=en_GB"
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key_here'
 
 
 
 headersc = {
         "accept": "application/json",
-        "Authorization": os.environ.get('FLASK_KEY')
-    }
+        "Authorization": "a_FVCr2bXlBaJEvrgvNrp7wlgHlJCd8C8rvt2sZqaxd2DScw8acqifRUfDTYTB0OIdUodg2ffaXscbzso8"
+}
 
 headerst = {
         "accept": "application/json",
@@ -62,7 +63,7 @@ def detect(text):
     headers = {
         "accept": "application/json",
         "content-type": "application/json",
-        "Authorization": os.environ.get('FLASK_KEY')
+        "Authorization": "a_FVCr2bXlBaJEvrgvNrp7wlgHlJCd8C8rvt2sZqaxd2DScw8acqifRUfDTYTB0OIdUodg2ffaXscbzso8"
     }
 
     response = requests.post(url, json=payload, headers=headers)
@@ -90,8 +91,14 @@ def translate():
     choice2 = request.form.get("choice2")
     text = request.form.get("text")
 
-    if not choice2 or not text:
+    if choice2 == "Languages" and not text:
         flash('Please fill in all required fields.')
+        return redirect('/')
+    elif choice2 == "Languages":
+        flash('Please pick a language')
+        return redirect('/')
+    elif not text:
+        flash('Please type something to translate')
         return redirect('/')
 
     if choice1 == "Detect Language":
@@ -124,4 +131,4 @@ def translate():
 
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)

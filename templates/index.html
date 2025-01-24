@@ -14,6 +14,13 @@
             <div class="container py-0 text-center">
                 <h1 class="text-body-emphasis">Translate your text</h1>
             </div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="alert alert-danger">
+                        {{ messages[0] }}
+                    </div>
+                {% endif %}
+            {% endwith %}
             <form action="/translate" method="post">
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center" style="margin-bottom: 15px; margin-top: 15px;">
                         <select name="choice1" style="margin-left: 30px;">
