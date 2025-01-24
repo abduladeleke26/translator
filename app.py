@@ -11,13 +11,13 @@ app.secret_key = 'your_secret_key_here'
 
 headersc = {
         "accept": "application/json",
-        "Authorization": "a_FVCr2bXlBaJEvrgvNrp7wlgHlJCd8C8rvt2sZqaxd2DScw8acqifRUfDTYTB0OIdUodg2ffaXscbzso8"
+        "Authorization": os.environ.get('FLASK_KEY')
 }
 
 headerst = {
         "accept": "application/json",
         "content-type": "application/json",
-        "Authorization": "a_FVCr2bXlBaJEvrgvNrp7wlgHlJCd8C8rvt2sZqaxd2DScw8acqifRUfDTYTB0OIdUodg2ffaXscbzso8"
+        "Authorization": os.environ.get('FLASK_KEY')
     }
 
 
@@ -63,7 +63,7 @@ def detect(text):
     headers = {
         "accept": "application/json",
         "content-type": "application/json",
-        "Authorization": "a_FVCr2bXlBaJEvrgvNrp7wlgHlJCd8C8rvt2sZqaxd2DScw8acqifRUfDTYTB0OIdUodg2ffaXscbzso8"
+        "Authorization": os.environ.get('FLASK_KEY')
     }
 
     response = requests.post(url, json=payload, headers=headers)
