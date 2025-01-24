@@ -1,5 +1,5 @@
 import requests
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, flash
 import os
 urlt = "https://api-b2b.backenster.com/b1/api/v3/translate"
 urlc = "https://api-b2b.backenster.com/b1/api/v3/getLanguages?platform=api&code=en_GB"
@@ -89,6 +89,10 @@ def translate():
     choice1 = request.form.get("choice1")
     choice2 = request.form.get("choice2")
     text = request.form.get("text")
+
+    if not choice2 or not text:
+        flash('Please fill in all required fields.')
+        return redirect('/')
 
     if choice1 == "Detect Language":
         language = detect(text)
