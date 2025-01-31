@@ -10,7 +10,7 @@ urldetect = "https://translate.googleapis.com/v3beta1/projects/929109150783:dete
 urllan = "https://translate.googleapis.com/v3beta1/projects/929109150783/supportedLanguages"
 
 headers = {
-    "Authorization": f"Bearer {os.environ.get('FLASK_KEY')}",
+    "Authorization": f"Bearer ya29.a0AXeO80Q3uFOyh3vfTBZX-UZ5eKYKbXJnZiC8ipeF3Ltu6vKJNZH66HutLfYmSj9rZrTXodwiKF35ya7T5ByCoUhlj-HFqfQ_aInyNRfjA3rez8lYqjTNA_CQnAS_TDw5fGxon9FmamEksIupTosMYRvjCJRxut7n44-bHTC45AaCgYKAaMSARISFQHGX2Mi5F6t4fLU9BDLI6MfS4IhXA0177",
     "Content-Type": "application/json"
 }
 
@@ -105,6 +105,5 @@ def translate():
 
     return render_template("index.html", text=text, translated=translated, choice1=name, choice2=name2)
 
-print(get_access_token())
 if __name__ == "__main__":
     app.run(debug=True)
