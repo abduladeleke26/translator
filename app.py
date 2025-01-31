@@ -10,7 +10,7 @@ urldetect = "https://translate.googleapis.com/v3beta1/projects/929109150783:dete
 urllan = "https://translate.googleapis.com/v3beta1/projects/929109150783/supportedLanguages"
 
 headers = {
-    "Authorization": f"Bearer ya29.a0AXeO80Q3uFOyh3vfTBZX-UZ5eKYKbXJnZiC8ipeF3Ltu6vKJNZH66HutLfYmSj9rZrTXodwiKF35ya7T5ByCoUhlj-HFqfQ_aInyNRfjA3rez8lYqjTNA_CQnAS_TDw5fGxon9FmamEksIupTosMYRvjCJRxut7n44-bHTC45AaCgYKAaMSARISFQHGX2Mi5F6t4fLU9BDLI6MfS4IhXA0177",
+    "Authorization": f"Bearer {os.environ.get('FLASK_KEY')}",
     "Content-Type": "application/json"
 }
 
