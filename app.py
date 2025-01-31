@@ -2,22 +2,6 @@ from flask import Flask, render_template, request, redirect, flash
 import requests
 import os
 
-
-CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
-CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
-REFRESH_TOKEN = os.getenv("GOOGLE_REFRESH_TOKEN")
-
-def get_access_token():
-    url = "https://oauth2.googleapis.com/token"
-    payload = {
-        "client_id": CLIENT_ID,
-        "client_secret": CLIENT_SECRET,
-        "refresh_token": REFRESH_TOKEN,
-        "grant_type": "refresh_token"
-    }
-    response = requests.post(url, data=payload)
-    return response.json().get("access_token")
-
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'
 
@@ -26,7 +10,7 @@ urldetect = "https://translate.googleapis.com/v3beta1/projects/929109150783:dete
 urllan = "https://translate.googleapis.com/v3beta1/projects/929109150783/supportedLanguages"
 
 headers = {
-    "Authorization": f"Bearer {get_access_token()}",
+    "Authorization": f"Bearer {os.environ.get('FLASK_KEY')}",
     "Content-Type": "application/json"
 }
 
@@ -121,6 +105,6 @@ def translate():
 
     return render_template("index.html", text=text, translated=translated, choice1=name, choice2=name2)
 
-
+print(get_access_token())
 if __name__ == "__main__":
     app.run(debug=True)
